@@ -1,0 +1,1 @@
+export var fileTypes: string[] = ['.tif', '.tiff', '.bmp', '.jpg', '.jpeg', '.gif', '.png', '.esps'];
