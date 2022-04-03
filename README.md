@@ -2,7 +2,7 @@
 
 ## Purpose of this project
 
-This project was made in order to show future employers my capabilities with node JS, or more specially ExpressJS and the firebase environment. The project's base concept is a guide service REST API, which makes use of firebase serverless functions service. Additionally to the functions service, there is also an integration of Google cloud logging, firebase bucket and firebase authentication. 
+This project was made in order to show future employers my capabilities with node JS, or more specially ExpressJS and the Firebase environment. The project's base concept is a guide service REST API, which makes use of Firebase serverless functions service. Additionally to the functions service, there is also an integration of Google cloud logging, Firebase bucket and Firebase authentication. 
 
 The final goal is to integrate the REST API in both a frontend website (Such as ReactJS, VueJS, etc...) and in a mobile Application (Flutter, React native, etc...). Through these frontend applications, you would be able to manage the resources of the guide service.
 
@@ -13,7 +13,7 @@ The final goal is to integrate the REST API in both a frontend website (Such as 
 
 - Integration of both a **table based** 'POSTGRESQL' database as well as a **document based** 'MONGODB' based database.
 
-- Able to swap between google cloud logging and a local file logging system.
+- Able to swap between Google cloud logging and a local file logging system.
 
 - Integration with Firebase Authentication in order to have authorized API paths.
 
@@ -30,11 +30,11 @@ Clone / download the project from the remote git repository to your local device
 Once you have the repository on your local device, create a (parent) folder on your desired location.
 
 Once created, place the acquired repository into the created parent folder[^1].
-[^1]: This step is necessary in order to set up firebase properly.
+[^1]: This step is necessary in order to set up Firebase properly.
 
 ### Firebase init
 
-Firebase has an in-depth [explanation](https://firebase.google.com/docs/functions/get-started) of how to set up a firebase project. 
+Firebase has an in-depth [explanation](https://firebase.google.com/docs/functions/get-started) of how to set up a Firebase project. 
 We advise you to go through the necessary steps before you go further. See below for a more abstract TODO list:
 
 - Go to the before created parent folder
@@ -42,13 +42,13 @@ We advise you to go through the necessary steps before you go further. See below
 - open a terminal to your liking[^2].
 [^2]: We advise you to use git bash (and navigate to the before created parent folder). For those who use visual studio code, you can use the build in terminal.
 
-- Run the following command, this will install firebase-tools on a global level across all projects[^3]. 
+- Run the following command, this will install Firebase-tools on a global level across all projects[^3]. 
  > npm install -g firebase-tools
  
-- After finishing that, login and authenticate the firebase tools by running the following command[^3].
+- After finishing that, login and authenticate the Firebase tools by running the following command[^3].
  > firebase login
 
-- Next, install the firebase functions service by running the following command[^3].
+- Next, install the Firebase functions service by running the following command[^3].
  > firebase init functions
   
 It will first ask if you are sure you want to create the project, press 'Y'.
@@ -60,11 +60,10 @@ the existing files, keep pressing 'n' till the end.
 
 ### Databases
 
-With the downloading of the project and initialising firebase / google, we can continue with the databases. You can choose between a traditional table 
+With the downloading of the project and initializing Firebase / Google, we can continue with the databases. You can choose between a traditional table 
 based database, ['POSTGRESQL'](https://www.postgresql.org/download/), or the recently more popular document based ['MONGODB'](https://www.mongodb.com/docs/manual/administration/install-community/) database. You can choose which on you use in the project configurations later on.
 
-For install these databases, we advice you to look on the technogolies respective website for a more in-depth guide on how to install their services. After installment, 
-you will need the database url, username, password and database in order to connect to it from the REST API.
+For installing these databases, we advice you to look on the technologies respective website for a more in-depth guide on how to install their services. After installment, you will need the database url, username, password and database in order to connect to it from the REST API.
 
 ### Environment variables
 
