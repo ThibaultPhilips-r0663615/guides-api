@@ -1,4 +1,4 @@
-# Realease-alpha1.0
+# gidsen-api
 
 ## Purpose of this project
 
