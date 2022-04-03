@@ -1,4 +1,4 @@
-# gidsen-api
+# guides-api
 
 ## Purpose of this project
 
