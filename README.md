@@ -60,10 +60,10 @@ the existing files, keep pressing 'n' till the end.
 
 ### Databases
 
-With the downloading of the project and initializing Firebase / Google, we can continue with the databases. You can choose between a traditional table 
-based database, ['POSTGRESQL'](https://www.postgresql.org/download/), or the recently more popular document based ['MONGODB'](https://www.mongodb.com/docs/manual/administration/install-community/) database. You can choose which on you use in the project configurations later on.
+After downloading the project and initializing Firebase / Google, we can continue with the databases. You can choose between a traditional table 
+based database, ['POSTGRESQL'](https://www.postgresql.org/download/), or the recently more popular document based ['MONGODB'](https://www.mongodb.com/docs/manual/administration/install-community/) database. You can choose which one you use in the project configurations later on.
 
-For installing these databases, I advise you to look on the technologies respective website for a more in-depth guide on how to install their services. After installment, you will need the database url, username, password and database in order to connect to it from the REST API.
+For installing these databases, I advise you to look on the technologies respective website for a more in-depth guide on how to install their services. After installment, you will need the database url, username, password and database name in order to connect to it from the REST API.
 
 ### Environment variables
 
