@@ -72,7 +72,7 @@ to make the project run. The comments present in the file give a more detailed e
 
 ### NPM
 
-Finally, run the following command to install all the 3rd party depencies[^3].
+Finally, run the following command to install all the 3rd party dependencies[^3].
 
 > npm install
 
