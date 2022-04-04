@@ -2,9 +2,9 @@
 
 ## Purpose of this project
 
-This project was made in order to show future employers my capabilities with node JS, or more specially ExpressJS and the Firebase environment. The project's base concept is a guide service REST API, which makes use of Firebase serverless functions service. Additionally to the functions service, there is also an integration of Google cloud logging, Firebase bucket and Firebase authentication. 
+This project was made in order to show future employers my capabilities with nodeJS, or more specifically ExpressJS and the Firebase environment. The project's base concept is a guide service REST API, which makes use of Firebase serverless functions service. Additionally to the functions service, there is also an integration of Google cloud logging, Firebase bucket and Firebase authentication. 
 
-The final goal is to integrate the REST API in both a frontend website (Such as ReactJS, VueJS, etc...) and in a mobile Application (Flutter, React native, etc...). Through these frontend applications, you would be able to manage the resources of the guide service.
+The final goal is to integrate the REST API in both a frontend website (making use of popular frameworks such as ReactJS, VueJS, etc...) and in a mobile Application (Flutter, React native, etc...).
 
 
 ## Initial project
@@ -35,17 +35,17 @@ Once created, place the acquired repository into the created parent folder[^1].
 ### Firebase init
 
 Firebase has an in-depth [explanation](https://firebase.google.com/docs/functions/get-started) of how to set up a Firebase project. 
-We advise you to go through the necessary steps before you go further. See below for a more abstract TODO list:
+I advise you to go through the necessary steps before you go any further. See below for a more abstract TODO list:
 
 - Go to the before created parent folder
 
-- open a terminal to your liking[^2].
-[^2]: We advise you to use git bash (and navigate to the before created parent folder). For those who use visual studio code, you can use the build in terminal.
+- Open a terminal of your liking[^2].
+[^2]: e.g. you could use git bash (and navigate to the before created parent folder). For those who use visual studio code, you can use the build in terminal.
 
-- Run the following command, this will install Firebase-tools on a global level across all projects[^3]. 
+- Run the following command, this will install Firebase-tools on a global level across all npm projects[^3]. 
  > npm install -g firebase-tools
  
-- After finishing that, login and authenticate the Firebase tools by running the following command[^3].
+- After finishing the previous step, login and authenticate the Firebase tools by running the following command and providing your google account details[^3].
  > firebase login
 
 - Next, install the Firebase functions service by running the following command[^3].
@@ -63,7 +63,7 @@ the existing files, keep pressing 'n' till the end.
 With the downloading of the project and initializing Firebase / Google, we can continue with the databases. You can choose between a traditional table 
 based database, ['POSTGRESQL'](https://www.postgresql.org/download/), or the recently more popular document based ['MONGODB'](https://www.mongodb.com/docs/manual/administration/install-community/) database. You can choose which on you use in the project configurations later on.
 
-For installing these databases, we advice you to look on the technologies respective website for a more in-depth guide on how to install their services. After installment, you will need the database url, username, password and database in order to connect to it from the REST API.
+For installing these databases, I advise you to look on the technologies respective website for a more in-depth guide on how to install their services. After installment, you will need the database url, username, password and database in order to connect to it from the REST API.
 
 ### Environment variables
 
@@ -79,8 +79,7 @@ Finally, run the following command to install all the 3rd party depencies[^3].
 
 ## Closure
 
-To run the project, take a close look at the provided scripts in the package.json folder, which is present at the root of the project. The following command would be the 
-most used command in order to run the project in development mode[^3]. 
+To run the project, take a closer look at the provided scripts in the package.json folder, which is present at the root of the project. The following command would be  used to run the project in development mode[^3]. 
 
 > npm run serve
 
