@@ -1,12 +1,14 @@
-/*export * from './addAddress.endpoint';
-export * from './getAddresses.endpoint';
-export * from './getAddress.endpoint';
-export * from './updateAddress.endpoint';*/
+import addAddress from './addAddress.endpoint';
+import getAddress from './getAddresses.endpoint';
+import getAddresses from './getAddress.endpoint';
+import updateAddress from './updateAddress.endpoint';
+import deleteAddress from './deleteAddress.endpoint';
+import { Application } from 'express';
 
-module.exports = (app: any) => {
-    require('./addAddress.endpoint')(app)
-    require('./getAddress.endpoint')(app)
-    require('./getAddresses.endpoint')(app)
-    require('./updateAddress.endpoint')(app)
-    require('./deleteAddress.endpoint')(app)
+export default (app: Application) => {
+    addAddress(app);
+    getAddress(app);
+    getAddresses(app);
+    updateAddress(app);
+    deleteAddress(app);
 };

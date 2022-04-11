@@ -1,10 +1,9 @@
-
 import { Request, Response, Application, NextFunction } from 'express';
 import { InternalServerError, InternalDataBaseError } from '../../error/model/errors.internal';
 import { StatusCodes } from 'http-status-codes';
 import { RepositoryContext } from '../../repositories/repository.context';
 
-module.exports = async (app: Application) => {
+export default async (app: Application) => {
     app.get('/get-label/:labelId', async (request: Request, response: Response, next: NextFunction) => {
         try {
             const labelId = request.params.labelId as string;

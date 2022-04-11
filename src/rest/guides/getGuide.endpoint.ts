@@ -4,7 +4,7 @@ import { InternalServerError, InternalDataBaseError } from '../../error/model/er
 import { StatusCodes } from 'http-status-codes';
 import { RepositoryContext } from '../../repositories/repository.context';
 
-module.exports = async (app: Application) => {
+export default async (app: Application) => {
     app.get('/get-guide/:guideId', async (request: Request, response: Response, next: NextFunction) => {
         try {
             const guideId = request.params.guideId as string;

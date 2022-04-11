@@ -3,7 +3,7 @@ import { Language } from '../../model/language.model';
 import { LanguagesSchema } from '../../mongodb_schemas/languages.schema';
 import { LanguageRepository } from '../language.repository.interface';
 import { InternalDataBaseError } from '../../error/model/errors.internal';
-const { v4: uuidv4 } = require('uuid');
+import uuidv4 from 'uuid'
 
 class LanguageRepositoryMongoDB implements LanguageRepository {
     languageModel: mongoose.Model<any, {}, {}, {}>;

@@ -17,3 +17,5 @@ package-lock.json
 lib/
 src/eventsAndServices/
 ui-debug.log
+
+test/

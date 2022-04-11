@@ -1,4 +1,3 @@
-//import * as admin from 'firebase-admin';
 import { Request, Response, Application, NextFunction } from 'express';
 import { validate } from 'class-validator';
 import { Address } from '../../model/address.model';
@@ -6,9 +5,9 @@ import { InternalDataBaseError, InternalServerError } from '../../error/model/er
 import { StatusCodes } from 'http-status-codes';
 import { isAdmin } from '../../middelware/isAdmin';
 import { RepositoryContext } from '../../repositories/repository.context';
-const { v4: uuidv4 } = require('uuid');
+import uuidv4 from 'uuid'
 
-module.exports = async (app: Application) => {
+export default async (app: Application) => {
     app.post('/add-address', isAdmin, async (request: Request, response: Response, next: NextFunction) => {
         try {
             let addressId = uuidv4();

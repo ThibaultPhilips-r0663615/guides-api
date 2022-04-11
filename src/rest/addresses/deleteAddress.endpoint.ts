@@ -3,7 +3,7 @@ import { InternalDataBaseError, InternalServerError } from '../../error/model/er
 import { StatusCodes } from 'http-status-codes';
 import { RepositoryContext } from '../../repositories/repository.context';
 
-module.exports = async (app: Application) => {
+export default async (app: Application) => {
     app.delete('/address/:addressId', async (request: Request, response: Response, next: NextFunction) => {
         try {
             const addressId = request.params.addressId as string;

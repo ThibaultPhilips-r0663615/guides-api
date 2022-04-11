@@ -10,7 +10,7 @@ import { Bucket, File, Storage } from '@google-cloud/storage';
 const storage = new Storage();
 var bucket: Bucket = storage.bucket(`${process.env.FIREBASE_CONFIG_STORAGE_BUCKET}`)
 
-module.exports = async (app: Application) => {
+export default async (app: Application) => {
     app.delete('/guide/:guideId', async (request: Request, response: Response, next: NextFunction) => {
         try {
             const guideId = request.params.guideId as string;

@@ -4,7 +4,7 @@ import { StatusCodes } from 'http-status-codes';
 import { InternalDataBaseError } from '../../error/model/errors.internal';
 import { LoggingContext } from '../../error/service/logging.context';
 
-module.exports = (app: Application) => {
+export default async(app: Application) => {
     app.get('/get-log/:date', isAdmin, async (request: Request, response: Response, next: NextFunction) => {
         const date = request.params.date as string;
 

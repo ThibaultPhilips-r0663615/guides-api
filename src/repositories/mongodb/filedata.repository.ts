@@ -3,7 +3,7 @@ import { Filedata } from '../../model/filedata.model';
 import { FileDataSchema } from '../../mongodb_schemas/fileData.schema';
 import { FiledataRepository } from '../filedata.repository.interface';
 import { InternalDataBaseError } from '../../error/model/errors.internal';
-const { v4: uuidv4 } = require('uuid');
+import uuidv4 from 'uuid'
 
 class FiledataRepositoryMongoDB implements FiledataRepository {
     filedataModel: mongoose.Model<any, {}, {}, {}>;

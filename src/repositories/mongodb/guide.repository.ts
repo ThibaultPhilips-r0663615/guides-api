@@ -3,7 +3,7 @@ import { GuideRepository } from '../guide.repository.interface';
 import { Guide } from '../../model/guide.model';
 import { GuidesSchema } from '../../mongodb_schemas/guide.schema';
 import { InternalDataBaseError } from '../../error/model/errors.internal';
-const { v4: uuidv4 } = require('uuid');
+import uuidv4 from 'uuid'
 
 class GuideRepositoryMongoDB implements GuideRepository {
     guideModel: mongoose.Model<any, {}, {}, {}>;

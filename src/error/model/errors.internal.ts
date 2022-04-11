@@ -1,4 +1,4 @@
-const { v4: uuidv4 } = require('uuid');
+import * as uuidv4 from 'uuid';
 
 export class InternalBaseError extends Error {
     id: string;

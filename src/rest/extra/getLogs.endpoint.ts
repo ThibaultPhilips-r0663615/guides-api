@@ -3,7 +3,7 @@ import { StatusCodes } from 'http-status-codes';
 import { InternalDataBaseError } from '../../error/model/errors.internal';
 import { LoggingContext } from '../../error/service/logging.context';
 
-module.exports = (app: Application) => {
+export default async(app: Application) => {
     app.get('/get-logs', async (request: Request, response: Response, next: NextFunction) => {
         LoggingContext.GetInstance().GetLoggingService().readAllErrorsFromLogs()
             .then((result) => {

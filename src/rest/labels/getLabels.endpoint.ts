@@ -1,13 +1,13 @@
-
-//import * as admin from 'firebase-admin';
 import { Request, Response, Application, NextFunction } from 'express';
 import { InternalServerError, InternalDataBaseError } from '../../error/model/errors.internal';
 import { StatusCodes } from 'http-status-codes';
 import { RepositoryContext } from '../../repositories/repository.context';
+import firebaseConfig from '../../config/firebase.config';
 
-module.exports = async (app: Application) => {
+export default async (app: Application) => {
     app.get('/get-labels', async (request: Request, response: Response, next: NextFunction) => {
         try {
+            console.log(firebaseConfig)
             let result = await RepositoryContext.GetInstance().labelRepository.getLabels()
                 .catch((error) => {
                     return next(new InternalDataBaseError(error.message, error.stack));

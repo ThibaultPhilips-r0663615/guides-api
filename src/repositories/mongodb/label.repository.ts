@@ -3,7 +3,7 @@ import { LabelRepository } from '../label.repository.interface';
 import { Label } from '../../model/label.model';
 import { labelsSchema } from '../../mongodb_schemas/label.schema';
 import { InternalDataBaseError } from '../../error/model/errors.internal';
-const { v4: uuidv4 } = require('uuid');
+import uuidv4 from 'uuid'
 
 class LabelRepositoryMongoDB implements LabelRepository {
     labelModel: mongoose.Model<any, {}, {}, {}>;

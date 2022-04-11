@@ -3,7 +3,7 @@ import { AddressRepository } from '../address.repository.interface';
 import mongoose from 'mongoose';
 import { AddressesSchema } from '../../mongodb_schemas/address.schema';
 import { InternalDataBaseError } from '../../error/model/errors.internal';
-const { v4: uuidv4 } = require('uuid');
+import uuidv4 from 'uuid'
 
 class AddressRepositoryMongoDB implements AddressRepository {
     addressModel: mongoose.Model<any, {}, {}, {}>;

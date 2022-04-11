@@ -3,7 +3,7 @@ import { InternalServerError, InternalDataBaseError } from '../../error/model/er
 import { StatusCodes } from 'http-status-codes';
 import { RepositoryContext } from '../../repositories/repository.context';
 
-module.exports = async (app: Application) => {
+export default async (app: Application) => {
     app.get('/get-language/:languageId', async (request: Request, response: Response, next: NextFunction) => {
         try {
             const languageId = request.params.languageId as string;

@@ -6,7 +6,7 @@ import { StatusCodes } from 'http-status-codes';
 import { isAdmin } from '../../middelware/isAdmin';
 import { RepositoryContext } from '../../repositories/repository.context';
 
-module.exports = async (app: Application) => {
+export default async (app: Application) => {
     app.put('/update-label/:labelId', isAdmin, async (request: Request, response: Response, next: NextFunction) => {
         try {
             const labelId = request.params.labelId as string;

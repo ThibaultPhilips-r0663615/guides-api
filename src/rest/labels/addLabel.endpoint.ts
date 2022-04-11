@@ -3,11 +3,10 @@ import { validate } from 'class-validator';
 import { Label } from '../../model/label.model';
 import { InternalServerError, InternalDataBaseError } from '../../error/model/errors.internal';
 import { StatusCodes } from 'http-status-codes';
-// import { isAdmin } from '../../middelware/isAdmin';
 import { RepositoryContext } from '../../repositories/repository.context';
-const { v4: uuidv4 } = require('uuid');
+import uuidv4 from 'uuid'
 
-module.exports = async (app: Application) => {
+export default async (app: Application) => {
     app.post('/add-label', async (request: Request, response: Response, next: NextFunction) => {
         try {
             let labelId = uuidv4();

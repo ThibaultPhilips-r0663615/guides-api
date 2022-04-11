@@ -1,8 +1,14 @@
+import addLanuage from './addLanuage.endpoint';
+import getLanguage from './getLanguage.endpoint';
+import getLanguages from './getLanguages.endpoint';
+import updateLanguage from './updateLanguage.endpoint';
+import deleteLanguage from './deleteLanguage.endpoint';
 import { Application } from 'express';
-module.exports = (app: Application) => {
-    require('./addLanuage.endpoint')(app)
-    require('./getLanguage.endpoint')(app)
-    require('./getLanguages.endpoint')(app)
-    require('./updateLanguage.endpoint')(app)
-    require('./deleteLanguage.endpoint')(app)
+
+export default (app: Application) => {
+    addLanuage(app);
+    getLanguage(app);
+    getLanguages(app);
+    updateLanguage(app);
+    deleteLanguage(app);
 };

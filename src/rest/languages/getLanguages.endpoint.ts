@@ -4,8 +4,8 @@ import { InternalServerError, InternalDataBaseError } from '../../error/model/er
 import { StatusCodes } from 'http-status-codes';
 import { RepositoryContext } from '../../repositories/repository.context';
 
-module.exports = async (app: Application, next: NextFunction) => {
-    app.get('/get-languages', async (request: Request, response: Response) => {
+export default async (app: Application) => {
+    app.get('/get-languages', async (request: Request, response: Response, next: NextFunction) => {
         try {
             RepositoryContext.GetInstance().languageRepository.getLanguages()
                 .then((result) => {

@@ -4,10 +4,10 @@ import { validate } from 'class-validator';
 import { InternalServerError, InternalDataBaseError } from '../../error/model/errors.internal';
 import { StatusCodes } from 'http-status-codes';
 import { RepositoryContext } from '../../repositories/repository.context';
-const { v4: uuidv4 } = require('uuid');
+import uuidv4 from 'uuid'
 
 
-module.exports = async (app: Application) => {
+export default async (app: Application) => {
     app.post('/add-language', async (request: Request, response: Response, next: NextFunction) => {
         try {
             let id = uuidv4();

@@ -4,10 +4,10 @@ import { StatusCodes } from 'http-status-codes';
 import * as admin from 'firebase-admin';
 import axios from 'axios';
 import { LoggingContext } from '../../error/service/logging.context';
-const queryString = require('query-string');
+import queryString from 'query-string'
 
-module.exports = async function isAuthenticatednAPI(app: Application) {
-    app.get('/is-authenticated', async function isAuthenticatednAPIEndpoint(request: Request, response: Response, next: any) {
+export default async (app: Application) => {
+    app.get('/is-authenticated', async(request: Request, response: Response, next: any) => {
         try {
             // ** https://firebase.google.com/docs/reference/rest/auth/#section-refresh-token
             let idToken;

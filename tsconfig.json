@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "module": "CommonJS",
+    "module": "ES2022",
     "noImplicitReturns": true,
     "noUnusedLocals": true,
     "outDir": "lib",
@@ -11,8 +11,9 @@
     "noUnusedParameters": false,
     "allowUnusedLabels": true,
     "esModuleInterop": true,
-    "skipLibCheck": true
-    
+    "skipLibCheck": true,
+    "moduleResolution": "Node",
+    "typeRoots": ["./@types"]
   },
   "compileOnSave": true,
   "include": [

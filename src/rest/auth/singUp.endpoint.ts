@@ -5,7 +5,7 @@ import * as admin from 'firebase-admin';
 import { validate } from 'class-validator';
 import { User } from '../../model/user.model';
 
-module.exports = (app: Application) => {
+export default async(app: Application) => {
     app.post('/sign-up', async (request: Request, response: Response, next: NextFunction) => {
         try {
             let newUser: User = new User(process.env.ADMIN_EMAIL, process.env.ADMIN_PASSWORD);

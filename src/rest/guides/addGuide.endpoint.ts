@@ -10,10 +10,10 @@ import { RepositoryContext } from '../../repositories/repository.context';
 import { Bucket, Storage } from '@google-cloud/storage';
 import { Language } from '../../model/language.model';
 import path from 'path';
-var sanitize = require("sanitize-filename");
-const busboyFunc = require('busboy');
-const { v4: uuidv4 } = require('uuid');
-var fs = require('fs')
+import sanitize from 'sanitize-filename'
+import busboyFunc from 'busboy';
+import uuidv4 from 'uuid';
+import fs from 'fs';
 const storage = new Storage();
 var bucket: Bucket = storage.bucket(`${process.env.FIREBASE_CONFIG_STORAGE_BUCKET}`)
 
@@ -25,7 +25,7 @@ const acceptedMimetypes: String[] = [
 ]
 
 
-module.exports = async (app: Application) => {
+export default async (app: Application) => {
   app.post('/add-guide', async (request: any, response: any, next: NextFunction) => {
     try {
       var busboy: Busboy = busboyFunc({ headers: request.headers, limits: { files: 6, fileSize: 1500000 } });
