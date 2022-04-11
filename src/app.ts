@@ -57,8 +57,6 @@ if (process.env.DATABASE_ENV == 'SQL') {
 
 }
 else {
-  console.log(process.env.LOGGING_TYPE);
-  console.log(process.env.DATABASE_ENV)
   console.log('mongodb')
   // let connection = mongoose.createConnection(`mongodb://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@${process.env.MONGODB_URL}/${process.env.MONGODB_DB_NAME}`)
   mongoose.connect(`mongodb://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@${process.env.MONGODB_URL}/${process.env.MONGODB_DB_NAME}`);

@@ -8,7 +8,4 @@ const runtimeOpts: functions.RuntimeOptions = {
   memory: '1GB'
 }
 
-console.log(process.env.NODE_ENV)
-console.log("test")
-
 export let api = functions.runWith(runtimeOpts).region(`${process.env.FUNCTIONS_REGION}`).https.onRequest(app);
