@@ -1,17 +1,19 @@
 import mongoose from 'mongoose';
-import { GuideRepository } from '../guide.repository.interface';
+import { IGuideRepository } from '../guide.repository.interface';
 import { Guide } from '../../model/guide.model';
 import { GuidesSchema } from '../../mongodb_schemas/guide.schema';
 import { InternalDataBaseError } from '../../error/model/errors.internal';
-import uuidv4 from 'uuid'
+import { v4 as uuidv4 } from 'uuid';
 
-class GuideRepositoryMongoDB implements GuideRepository {
+class GuideRepositoryMongoDB implements IGuideRepository {
     guideModel: mongoose.Model<any, {}, {}, {}>;
     constructor() {
         this.guideModel = mongoose.model('guides', GuidesSchema)
     }
 
     addGuide = async (newGuide: Guide): Promise<any | undefined> => {
+        console.log('add guide repo')
+        console.log(JSON.stringify(newGuide))
         const guide = new this.guideModel({
             _id: newGuide._id === undefined ? uuidv4() : newGuide._id,
             firstName: newGuide.firstName,
@@ -19,6 +21,7 @@ class GuideRepositoryMongoDB implements GuideRepository {
             nickName: newGuide.nickName,
             email: newGuide.email,
             phoneNumber: newGuide.phoneNumber,
+            descriptions: newGuide.descriptions,
             languages: newGuide.languages,
             profilePicture: newGuide.profilePicture,
             images: newGuide.images
@@ -31,11 +34,11 @@ class GuideRepositoryMongoDB implements GuideRepository {
     }
 
     getGuide = async (id: string): Promise<any | undefined> => {
-        return this.guideModel.findOne({ '_id': id }).populate('profilePicture').populate('images').exec();
+        return this.guideModel.findOne({ '_id': id }).populate('languages').populate('profilePicture').populate('images').exec();
     }
 
     getGuides = async (): Promise<any[] | undefined> => {
-        return this.guideModel.find().populate('profilePicture').populate('images').exec();
+        return this.guideModel.find().populate('languages').populate('profilePicture').populate('images').exec();
     }
 
     deleteGuide = async (id: string): Promise<Boolean> => {

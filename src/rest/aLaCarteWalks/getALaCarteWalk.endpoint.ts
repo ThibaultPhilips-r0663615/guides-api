@@ -5,11 +5,11 @@ import { StatusCodes } from 'http-status-codes';
 import { RepositoryContext } from '../../repositories/repository.context';
 
 export default async (app: Application) => {
-    app.get('/guide/:guideId', async (request: Request, response: Response, next: NextFunction) => {
+    app.get('/a-la-carte-walk/:walkId', async (request: Request, response: Response, next: NextFunction) => {
         try {
-            const guideId = request.params.guideId as string;
+            const walkId = request.params.walkId as string;
 
-            RepositoryContext.GetInstance().guideRepository.getGuide(guideId)
+            RepositoryContext.GetInstance().aLaCarteWalkRepository.getALaCarteWalk(walkId)
                 .then((result) => {
                     response.status(StatusCodes.OK).json(result);
                     return;

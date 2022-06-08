@@ -1,6 +1,6 @@
 import { Filedata } from './../model/Filedata.model';
 
-interface FiledataRepository {
+interface IFiledataRepository {
     addFiledata: (addFiledata: Filedata) => Promise<Filedata | undefined>;
     updateFiledata: (updateFiledata: Filedata) => Promise<Filedata | undefined>;
     getFiledata: (id: string) => Promise<Filedata | undefined>;
@@ -8,4 +8,4 @@ interface FiledataRepository {
     deleteFiledata: (id: string) => Promise<Boolean>;
 }
 
-export {FiledataRepository}
+export {IFiledataRepository}

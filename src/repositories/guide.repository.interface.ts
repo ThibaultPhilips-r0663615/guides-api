@@ -1,6 +1,6 @@
 import { Guide } from "../model/guide.model";
 
-interface GuideRepository {
+interface IGuideRepository {
     addGuide: (addGuide: Guide) => Promise<any | undefined>;
     updateGuide: (updateGuide: Guide) => Promise<Guide | undefined>;
     getGuide: (id: string) => Promise<Guide | undefined>;
@@ -8,4 +8,4 @@ interface GuideRepository {
     deleteGuide: (id: string) => Promise<Boolean>;
 }
 
-export {GuideRepository}
+export {IGuideRepository}

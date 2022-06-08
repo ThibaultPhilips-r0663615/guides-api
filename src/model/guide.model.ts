@@ -6,9 +6,11 @@ import {
     IsNotEmpty,
     IsOptional,
     IsEmail,
-    ArrayMaxSize
+    ArrayMaxSize,
+    IsDefined
 } from 'class-validator';
 import { IGuide } from './interfaces/guide.interface';
+import { ALaCarteWalk } from './aLaCarteWalk.model';
 
 export class GuideBase {
     @IsNotEmpty({
@@ -74,6 +76,8 @@ export class GuideBase {
     @Column({ type: 'varchar', length: 20 })
     phoneNumber: String;
 
+    descriptions: any[];
+
     @ManyToMany(type => Language, language => language.guides)
     @JoinTable({
         name: "guide_languages", // table name for the junction table of this relation
@@ -86,15 +90,19 @@ export class GuideBase {
             referencedColumnName: "_id"
         }
     })
-    languages: Language[];
+    languages: any[];
 
-    constructor(_id: string = '', firstName: string = '', lastName: string = '', nickName: string = '', email: string = '', phoneNumber: string = '', languages: Language[] = undefined as any) {
+    @ManyToMany(type => ALaCarteWalk, walk => walk.guides)
+    aLaCarteWalks: ALaCarteWalk[];
+
+    constructor(_id: string = '', firstName: string = '', lastName: string = '', nickName: string = '', email: string = '', phoneNumber: string = '', descriptions: any = {}, languages: Language[] = undefined as any) {
         this._id = _id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.nickName = nickName;
         this.email = email;
         this.phoneNumber = phoneNumber;
+        this.descriptions = descriptions;
         this.languages = languages;
     }
 }
@@ -107,6 +115,7 @@ export class Guide extends GuideBase implements IGuide {
     })
     @OneToOne(type => Filedata)
     @JoinColumn()
+    @IsDefined()
     profilePicture: Filedata;
 
     @ArrayMaxSize(5, {

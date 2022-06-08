@@ -5,7 +5,7 @@ import * as admin from 'firebase-admin';
 import { validate } from 'class-validator';
 import { User } from '../../model/user.model';
 
-export default async(app: Application) => {
+export default async (app: Application) => {
     app.post('/sign-up', async (request: Request, response: Response, next: NextFunction) => {
         try {
             let newUser: User = new User(process.env.ADMIN_EMAIL, process.env.ADMIN_PASSWORD);
@@ -18,14 +18,14 @@ export default async(app: Application) => {
                                     .catch((error: any) => {
                                         return next(new InternalDataBaseError(error.message, error.stack));
                                     });
-                                return response.status(StatusCodes.ACCEPTED).send(data);
+                                return response.status(StatusCodes.OK).json(data);
                             })
                             .catch((error: any) => {
                                 return next(new InternalDataBaseError(error.message, error.stack));
                             });
                     }
                     else {
-                        response.status(StatusCodes.BAD_REQUEST).send(errors);
+                        response.status(StatusCodes.BAD_REQUEST).json(errors);
                         return;
                     }
                 }

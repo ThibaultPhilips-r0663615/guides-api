@@ -15,7 +15,8 @@ export default async (app: Application) => {
                 let updatedLabel: Label = new Label(
                     labelId,
                     request.body['colorCode'],
-                    request.body['textColorCode']
+                    request.body['textColorCode'],
+                    request.body['texts']
                 );
 
                 validate(updatedLabel)
@@ -28,7 +29,7 @@ export default async (app: Application) => {
                             return response.status(StatusCodes.OK).json(result);
                         }
                         else {
-                            return response.status(StatusCodes.BAD_REQUEST).send(errors);
+                            return response.status(StatusCodes.BAD_REQUEST).json(errors);
                         }
                     })
                     .catch((error: any) => {
@@ -36,7 +37,7 @@ export default async (app: Application) => {
                     });
             }
             else {
-                response.status(StatusCodes.BAD_REQUEST).send('The label id of the body and request param should be the same.');
+                response.status(StatusCodes.BAD_REQUEST).json({ statusCode: StatusCodes.BAD_REQUEST, errorMessage: 'The label id of the body and request param should be the same.'});
                 return;
             }
         }

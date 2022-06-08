@@ -5,7 +5,7 @@ import { InternalDataBaseError, InternalServerError } from '../../error/model/er
 import { StatusCodes } from 'http-status-codes';
 import { isAdmin } from '../../middelware/isAdmin';
 import { RepositoryContext } from '../../repositories/repository.context';
-import uuidv4 from 'uuid'
+import { v4 as uuidv4 } from 'uuid';
 
 export default async (app: Application) => {
     app.post('/add-address', isAdmin, async (request: Request, response: Response, next: NextFunction) => {
@@ -26,7 +26,7 @@ export default async (app: Application) => {
                     if (errors.length === 0) {
                         RepositoryContext.GetInstance().addressRepository.addAddress(newAddress)
                             .then((result) => {
-                                response.status(StatusCodes.OK).send(result);
+                                response.status(StatusCodes.OK).json(result);
                                 return;
                             })
                             .catch((error) => {
@@ -34,7 +34,7 @@ export default async (app: Application) => {
                             });;
                     }
                     else {
-                        response.status(StatusCodes.BAD_REQUEST).send(errors);
+                        response.status(StatusCodes.BAD_REQUEST).json(errors);
                         return;
                     }
                 })

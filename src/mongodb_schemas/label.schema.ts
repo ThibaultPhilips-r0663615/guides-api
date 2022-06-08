@@ -12,6 +12,9 @@ export const labelsSchema = new Schema({
     textColorCode: {
         type: String,
         required: true
+    },
+    texts: {
+        type: [Object]
     }
 },{
     collection: 'labels'

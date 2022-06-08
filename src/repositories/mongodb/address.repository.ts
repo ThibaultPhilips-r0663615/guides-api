@@ -1,11 +1,11 @@
 import { Address } from '../../model/address.model';
-import { AddressRepository } from '../address.repository.interface';
+import { IAddressRepository } from '../address.repository.interface';
 import mongoose from 'mongoose';
 import { AddressesSchema } from '../../mongodb_schemas/address.schema';
 import { InternalDataBaseError } from '../../error/model/errors.internal';
-import uuidv4 from 'uuid'
+import { v4 as uuidv4 } from 'uuid';
 
-class AddressRepositoryMongoDB implements AddressRepository {
+class AddressRepositoryMongoDB implements IAddressRepository {
     addressModel: mongoose.Model<any, {}, {}, {}>;
     constructor() {
         this.addressModel = mongoose.model('addresses', AddressesSchema)

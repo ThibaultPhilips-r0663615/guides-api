@@ -4,10 +4,11 @@ import { Label } from '../../model/label.model';
 import { InternalServerError, InternalDataBaseError } from '../../error/model/errors.internal';
 import { StatusCodes } from 'http-status-codes';
 import { RepositoryContext } from '../../repositories/repository.context';
-import uuidv4 from 'uuid'
+import { v4 as uuidv4 } from 'uuid';
+import { isAdmin } from '../../middelware/isAdmin';
 
 export default async (app: Application) => {
-    app.post('/add-label', async (request: Request, response: Response, next: NextFunction) => {
+    app.post('/add-label', isAdmin, async (request: Request, response: Response, next: NextFunction) => {
         try {
             let labelId = uuidv4();
 
@@ -15,6 +16,7 @@ export default async (app: Application) => {
                 labelId,
                 request.body['colorCode'],
                 request.body['textColorCode'],
+                request.body['texts']
             );
 
             validate(newLabel)
@@ -23,10 +25,10 @@ export default async (app: Application) => {
                         let result = await RepositoryContext.GetInstance().labelRepository.addLabel(newLabel).catch((error) => {
                             return next(new InternalDataBaseError(error.message, error.stack));
                         })
-                        return response.status(StatusCodes.OK).send(result);
+                        return response.status(StatusCodes.OK).json(result);
                     }
                     else {
-                        response.status(StatusCodes.BAD_REQUEST).send(errors);
+                        response.status(StatusCodes.BAD_REQUEST).json(errors);
                         return;
                     }
                 })

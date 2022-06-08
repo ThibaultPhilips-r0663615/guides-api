@@ -1,13 +1,15 @@
-import { AddressRepository } from "./address.repository.interface";
-import { FiledataRepository } from "./filedata.repository.interface";
-import { GuideRepository } from "./guide.repository.interface";
-import { LabelRepository } from "./label.repository.interface";
-import { LanguageRepository } from "./language.repository.interface";
+import { IAddressRepository } from "./address.repository.interface";
+import { IFiledataRepository } from "./filedata.repository.interface";
+import { IGuideRepository } from "./guide.repository.interface";
+import { ILabelRepository } from "./label.repository.interface";
+import { ILanguageRepository } from "./language.repository.interface";
+import { IALaCarteWalkRepository } from "./aLaCarteWalk.repository.interface";
 import { AddressRepositoryMongoDB } from "./mongodb/address.repository";
 import { FiledataRepositoryMongoDB } from "./mongodb/filedata.repository";
 import { GuideRepositoryMongoDB } from "./mongodb/guide.repository";
 import { LabelRepositoryMongoDB } from "./mongodb/label.repository";
 import { LanguageRepositoryMongoDB } from "./mongodb/language.repository";
+import { ALaCarteWalkRepositoryMongoDB } from "./mongodb/aLaCarteWalk.repository";
 import { AddressRepositorySQL } from "./sql/address.repository";
 import { FiledataRepositorySQL } from "./sql/filedata.repository";
 import { GuideRepositorySQL } from "./sql/guide.repository";
@@ -17,11 +19,12 @@ import { LanguageRepositorySQL } from "./sql/language.repository";
 class RepositoryContext {
     private static _Instance: RepositoryContext = new RepositoryContext();
 
-    public addressRepository: AddressRepository;
-    public languageRepository: LanguageRepository;
-    public guideRepository: GuideRepository;
-    public labelRepository: LabelRepository;
-    public filedataRepository: FiledataRepository;
+    public addressRepository: IAddressRepository;
+    public languageRepository: ILanguageRepository;
+    public guideRepository: IGuideRepository;
+    public labelRepository: ILabelRepository;
+    public filedataRepository: IFiledataRepository;
+    public aLaCarteWalkRepository: IALaCarteWalkRepository;
 
     constructor() {
         if (RepositoryContext._Instance) {
@@ -36,6 +39,7 @@ class RepositoryContext {
                 this.guideRepository = new GuideRepositorySQL();
                 this.labelRepository = new LabelRepositorySQL();
                 this.filedataRepository = new FiledataRepositorySQL();
+
                 break;
             case 'MONGODB':
                 this.addressRepository = new AddressRepositoryMongoDB();
@@ -43,6 +47,7 @@ class RepositoryContext {
                 this.guideRepository = new GuideRepositoryMongoDB();
                 this.labelRepository = new LabelRepositoryMongoDB();
                 this.filedataRepository = new FiledataRepositoryMongoDB();
+                this.aLaCarteWalkRepository = new ALaCarteWalkRepositoryMongoDB();
                 break;
             default:
                 this.addressRepository = new AddressRepositorySQL();

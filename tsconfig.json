@@ -12,6 +12,7 @@
     "allowUnusedLabels": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
+    "strictPropertyInitialization": false,
     "moduleResolution": "Node",
     "typeRoots": ["./@types"]
   },

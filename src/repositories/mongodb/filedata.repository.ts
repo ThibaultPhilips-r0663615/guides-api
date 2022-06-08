@@ -1,11 +1,11 @@
 import mongoose from 'mongoose';
 import { Filedata } from '../../model/filedata.model';
 import { FileDataSchema } from '../../mongodb_schemas/fileData.schema';
-import { FiledataRepository } from '../filedata.repository.interface';
+import { IFiledataRepository } from '../filedata.repository.interface';
 import { InternalDataBaseError } from '../../error/model/errors.internal';
-import uuidv4 from 'uuid'
+import { v4 as uuidv4 } from 'uuid';
 
-class FiledataRepositoryMongoDB implements FiledataRepository {
+class FiledataRepositoryMongoDB implements IFiledataRepository {
     filedataModel: mongoose.Model<any, {}, {}, {}>;
     constructor() {
         this.filedataModel = mongoose.model('filedata', FileDataSchema)

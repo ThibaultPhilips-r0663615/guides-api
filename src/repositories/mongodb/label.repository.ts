@@ -1,11 +1,11 @@
 import mongoose from 'mongoose';
-import { LabelRepository } from '../label.repository.interface';
+import { ILabelRepository } from '../label.repository.interface';
 import { Label } from '../../model/label.model';
 import { labelsSchema } from '../../mongodb_schemas/label.schema';
 import { InternalDataBaseError } from '../../error/model/errors.internal';
-import uuidv4 from 'uuid'
+import { v4 as uuidv4 } from 'uuid';
 
-class LabelRepositoryMongoDB implements LabelRepository {
+class LabelRepositoryMongoDB implements ILabelRepository {
     labelModel: mongoose.Model<any, {}, {}, {}>;
     constructor() {
         this.labelModel = mongoose.model('labels', labelsSchema)
@@ -15,7 +15,8 @@ class LabelRepositoryMongoDB implements LabelRepository {
         const label = new this.labelModel({
             _id: newLabel._id === undefined ? uuidv4() : newLabel._id,
             textColorCode: newLabel.textColorCode,
-            colorCode: newLabel.colorCode
+            colorCode: newLabel.colorCode,
+            texts: newLabel.texts
         });
         return label.save();
     }

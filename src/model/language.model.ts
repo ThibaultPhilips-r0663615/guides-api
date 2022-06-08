@@ -4,6 +4,7 @@ import {
     IsBoolean
 } from 'class-validator';
 import { Entity, Column, PrimaryColumn, ManyToMany } from "typeorm";
+import { ALaCarteWalk } from './aLaCarteWalk.mode';
 import { Guide } from './guide.model';
 import { ILanguage } from './interfaces/language.interface';
 
@@ -50,6 +51,9 @@ export class Language implements ILanguage {
 
     @ManyToMany(type => Guide, guide => guide.languages)
     guides: Guide[];
+
+    @ManyToMany(type => ALaCarteWalk, walk => walk.languages)
+    aLaCarteWalks: ALaCarteWalk[];
 
     constructor(_id: string = '', locale: string = '', languageCode: string = '', isMainLanguage: boolean = false, guides: Guide[] = undefined as any) {
         this._id = _id;

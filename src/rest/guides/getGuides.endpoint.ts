@@ -6,7 +6,7 @@ import { StatusCodes } from 'http-status-codes';
 import { RepositoryContext } from '../../repositories/repository.context';
 
 export default async (app: Application) => {
-    app.get('/get-guides', async (request: Request, response: Response, next: NextFunction) => {
+    app.get('/guide', async (request: Request, response: Response, next: NextFunction) => {
         try {
             RepositoryContext.GetInstance().guideRepository.getGuides()
                 .then((result) => {

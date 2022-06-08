@@ -4,11 +4,12 @@ import { validate } from 'class-validator';
 import { InternalServerError, InternalDataBaseError } from '../../error/model/errors.internal';
 import { StatusCodes } from 'http-status-codes';
 import { RepositoryContext } from '../../repositories/repository.context';
-import uuidv4 from 'uuid'
+import { v4 as uuidv4 } from 'uuid';
+import { isAdmin } from '../../middelware/isAdmin';
 
 
 export default async (app: Application) => {
-    app.post('/add-language', async (request: Request, response: Response, next: NextFunction) => {
+    app.post('/add-language', isAdmin, async (request: Request, response: Response, next: NextFunction) => {
         try {
             let id = uuidv4();
 
@@ -24,7 +25,7 @@ export default async (app: Application) => {
                     if (errors.length === 0) {
                         RepositoryContext.GetInstance().languageRepository.addLanguage(newLanguage)
                             .then((result) => {
-                                response.status(StatusCodes.OK).send(result);
+                                response.status(StatusCodes.OK).json(result);
                                 return;
                             })
                             .catch((error) => {
@@ -32,7 +33,7 @@ export default async (app: Application) => {
                             });;
                     }
                     else {
-                        response.status(StatusCodes.BAD_REQUEST).send(errors);
+                        response.status(StatusCodes.BAD_REQUEST).json(errors);
                         return;
                     }
                 })

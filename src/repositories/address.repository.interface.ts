@@ -1,6 +1,6 @@
 import { Address } from './../model/address.model';
 
-interface AddressRepository {
+interface IAddressRepository {
     addAddress: (addAddress: Address) => Promise<Address | undefined>;
     updateAddress: (updateAddress: Address) => Promise<Address | undefined>;
     getAddress: (id: string) => Promise<Address | undefined>;
@@ -8,4 +8,4 @@ interface AddressRepository {
     deleteAddress: (id: string) => Promise<Boolean>;
 }
 
-export {AddressRepository}
+export {IAddressRepository}

@@ -20,20 +20,30 @@ import addressModule from './rest/addresses/addresses.module';
 import labelModule from './rest/labels/labels.module';
 import extraModule from './rest/extra/extra.module';
 import authModule from './rest/auth/auth.module';
+import aLaCarteWalkModule from './rest/aLaCarteWalks/aLaCarteWalks.module'
 import './util/admin'
 
 import { Application } from 'express';
 import express from 'express'
+import { ALaCarteWalksSchema } from './mongodb_schemas/aLaCarteWalk.schema';
 let app: Application = express();
 
+// app.use(express.json())
 
-app.use(cors())
+app.use(express.json());
+var corsOptions = {
+  origin: ["http://localhost", "https://placepreferee-leuven.be", "http://localhost:80", "http://localhost"],
+  credentials: true,
+  allowedHeaders: ['Content-Type', 'Authorization', 'withcredentials', 'crossdomain', 'refreshToken']
+}
+app.use(cors(corsOptions))
 
 if (process.env.DATABASE_ENV == 'SQL') {
   console.log('SQL')
   await createDatabaseConnection(SQL_DATABASE_CONFIG);
   // *! REST FUNCTIONS
   guideModule(app);
+  aLaCarteWalkModule(app);
   lanuageModule(app);
   addressModule(app);
   labelModule(app);
@@ -68,12 +78,14 @@ else {
       mongoose.model('labels', labelsSchema).collection.drop();
       mongoose.model('guides', GuidesSchema).collection.drop();
       mongoose.model('filedata', FileDataSchema).collection.drop();
+      mongoose.model('aLaCarteWalks', ALaCarteWalksSchema).collection.drop();
 
       mongoose.model('addresses', AddressesSchema)
       mongoose.model('languages', LanguagesSchema)
       mongoose.model('labels', labelsSchema)
       mongoose.model('guides', GuidesSchema)
       mongoose.model('filedata', FileDataSchema)
+      mongoose.model('aLaCarteWalks', ALaCarteWalksSchema)
       break;
     default:
       mongoose.model('addresses', AddressesSchema)
@@ -81,12 +93,14 @@ else {
       mongoose.model('labels', labelsSchema)
       mongoose.model('guides', GuidesSchema)
       mongoose.model('filedata', FileDataSchema)
+      mongoose.model('aLaCarteWalks', ALaCarteWalksSchema)
       break;
   }
   // }
 
   // *! REST FUNCTIONS
   guideModule(app);
+  aLaCarteWalkModule(app);
   lanuageModule(app);
   addressModule(app);
   labelModule(app);

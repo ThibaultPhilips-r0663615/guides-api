@@ -2,6 +2,7 @@ import * as admin from 'firebase-admin';
 import { Request, Response, NextFunction } from 'express'
 import { StatusCodes } from 'http-status-codes';
 import { InternalServerError } from '../error/model/errors.internal';
+import { ExternalApiError } from '../error/model/errors.external';
 
 export const isAdmin = (request: Request, response: Response, next: NextFunction) => {
     try {
@@ -12,20 +13,18 @@ export const isAdmin = (request: Request, response: Response, next: NextFunction
         ) {
             idToken = request.headers.authorization.split('Bearer ')[1];
         } else {
-            response.status(StatusCodes.UNAUTHORIZED).json({ error: 'Unauthorized, no bearer token present.' });
-            return;
+            return response.status(StatusCodes.UNAUTHORIZED).json(new ExternalApiError('Unauthorized, no bearer token present.', StatusCodes.UNAUTHORIZED));
         }
         admin
             .auth()
             .verifyIdToken(idToken as string)
             .then(async (decodedToken) => {
                 let user: any = await admin.auth().getUser(decodedToken.uid)
-                if (user['customClaims']['admin']) {
+                if (user) {
                     request.body.user = user;
                     return next();
                 }
-                response.status(StatusCodes.UNAUTHORIZED).json({ error: 'Unauthorized, incorrect bearer token.' });
-                return;
+                return response.status(StatusCodes.UNAUTHORIZED).json(new ExternalApiError('Unauthorized, incorrect bearer token.', StatusCodes.UNAUTHORIZED));
             })
             .catch((error) => {
                 return next(new InternalServerError(error.message, error.stack));

@@ -1,6 +1,6 @@
 import { Language } from './../model/language.model';
 
-interface LanguageRepository {
+interface ILanguageRepository {
     addLanguage: (addLanguage: Language) => Promise<Language | undefined>;
     updateLanguage: (updateLanguage: Language) => Promise<Language | undefined>;
     getLanguage: (id: string) => Promise<Language | undefined>;
@@ -8,4 +8,4 @@ interface LanguageRepository {
     deleteLanguage: (id: string) => Promise<Boolean>;
 }
 
-export {LanguageRepository}
+export {ILanguageRepository}

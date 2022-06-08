@@ -2,9 +2,10 @@ import { Request, Response, Application, NextFunction } from 'express';
 import { InternalDataBaseError, InternalServerError } from '../../error/model/errors.internal';
 import { StatusCodes } from 'http-status-codes';
 import { RepositoryContext } from '../../repositories/repository.context';
+import { isAdmin } from '../../middelware/isAdmin';
 
 export default async (app: Application) => {
-    app.delete('/address/:addressId', async (request: Request, response: Response, next: NextFunction) => {
+    app.delete('/address/:addressId', isAdmin, async (request: Request, response: Response, next: NextFunction) => {
         try {
             const addressId = request.params.addressId as string;
 
@@ -13,7 +14,7 @@ export default async (app: Application) => {
                     if (result) {
                         return response.status(StatusCodes.OK).json({ statusCode: StatusCodes.OK, message: `The address with id '${addressId}' has been deleted successfully.` });
                     }
-                    return response.status(StatusCodes.BAD_REQUEST).json({ statusCode: StatusCodes.BAD_REQUEST, message: `Address with the given id '${addressId}' has not been deleted. Give a valid ID.` });
+                    return response.status(StatusCodes.BAD_REQUEST).json({ statusCode: StatusCodes.BAD_REQUEST, errorMessage: `Address with the given id '${addressId}' has not been deleted. Give a valid ID.` });
                 })
                 .catch((error) => {
                     return next(new InternalDataBaseError(error.message, error.stack));

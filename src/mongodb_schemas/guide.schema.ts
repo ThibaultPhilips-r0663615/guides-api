@@ -1,14 +1,5 @@
 import { Schema } from 'mongoose';
-
-interface Address {
-    _id: String;
-    firstName: String;
-    lastName: String;
-    nickName?: String;
-    email?: String;
-    phoneNumber?: String;
-    languages?: String[];
-}
+import { IGuide } from '../model/interfaces/guide.interface';
 
 export const GuidesSchema = new Schema({
     _id: {
@@ -29,7 +20,7 @@ export const GuidesSchema = new Schema({
     },
     email: {
         type: String,
-        required: function (this: Address) {
+        required: function (this: IGuide) {
             if (this.phoneNumber !== undefined)
                 return false;
 
@@ -38,12 +29,15 @@ export const GuidesSchema = new Schema({
     },
     phoneNumber: {
         type: String,
-        required: function (this: Address) {
+        required: function (this: IGuide) {
             if (this.email !== undefined)
                 return false;
 
             return true;
         }
+    },
+    descriptions: {
+        type: [Object]
     },
     languages: {
         type: [String],

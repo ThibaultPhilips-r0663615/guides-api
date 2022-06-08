@@ -3,6 +3,7 @@ import getGuide from './getGuide.endpoint';
 import getGuides from './getGuides.endpoint';
 import deleteGuide from './deleteGuide.endpoint';
 import { Application } from 'express';
+import editGuide from './editGuide.endpoint';
 
 
 export default (app: Application) => {
@@ -10,4 +11,5 @@ export default (app: Application) => {
     getGuide(app);
     getGuides(app);
     deleteGuide(app);
+    editGuide(app);
 };

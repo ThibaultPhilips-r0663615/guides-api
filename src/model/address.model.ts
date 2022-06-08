@@ -47,16 +47,11 @@ export class Address implements IAddress {
     @Column({ type: 'varchar', length: 20 })
     postcode: String;
 
-    @Length(0, 20, {
-        always: true,
-        message: 'Description of an address must be between 0 and 500 characters'
-    })
-    @Column({ type: 'varchar', length: 20 })
-    description: String;
+    description: String[];
 
 
 
-    constructor(_id: string, streetName: String, houseNumber: String, cityName: String, postcode: String, description: String) {
+    constructor(_id: string, streetName: String, houseNumber: String, cityName: String, postcode: String, description: String[]) {
         this._id = _id;
         this.streetName = streetName;
         this.houseNumber = houseNumber;

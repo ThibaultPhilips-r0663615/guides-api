@@ -42,7 +42,8 @@ class FileLoggingService extends LoggingService {
             return result;
         }
         catch (fileError) {
-            return Promise.reject(await this.writeErrorToLog(fileError).catch((err) => console.log(err)))
+            return Promise.reject();
+            // return Promise.reject(await this.writeErrorToLog(fileError).catch((err) => console.log(err)))
         }
     }
 
@@ -54,7 +55,8 @@ class FileLoggingService extends LoggingService {
             return Promise.resolve(JSON.parse(data));
         }
         catch (fileError) {
-            return Promise.reject(await this.writeErrorToLog(fileError).catch((err) => console.log(err)))
+            return Promise.reject();
+            //return Promise.reject(await this.writeErrorToLog(fileError).catch((err) => console.log(err)))
         }
     }
 }

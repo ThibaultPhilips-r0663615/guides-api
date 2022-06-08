@@ -4,7 +4,7 @@ interface IAddress {
     houseNumber?: String;
     cityName: String;
     postcode: String;
-    description?: String;
+    description: String[];
 }
 
 export { IAddress }

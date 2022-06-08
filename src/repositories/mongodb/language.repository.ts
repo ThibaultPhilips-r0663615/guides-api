@@ -1,11 +1,11 @@
 import mongoose from 'mongoose';
 import { Language } from '../../model/language.model';
 import { LanguagesSchema } from '../../mongodb_schemas/languages.schema';
-import { LanguageRepository } from '../language.repository.interface';
+import { ILanguageRepository } from '../language.repository.interface';
 import { InternalDataBaseError } from '../../error/model/errors.internal';
-import uuidv4 from 'uuid'
+import { v4 as uuidv4 } from 'uuid';
 
-class LanguageRepositoryMongoDB implements LanguageRepository {
+class LanguageRepositoryMongoDB implements ILanguageRepository {
     languageModel: mongoose.Model<any, {}, {}, {}>;
     constructor() {
         this.languageModel = mongoose.model('languages', LanguagesSchema)

@@ -9,12 +9,12 @@ import { RepositoryContext } from '../../repositories/repository.context';
 export default async (app: Application) => {
     app.put('/update-address/:addressId', isAdmin, async (request: Request, response: Response, next: NextFunction) => {
         try {
-            if (request.params.addressId == request.body['addressId']) {
+            if (request.params.addressId == request.body['_id']) {
                 const addressId = request.params.addressId as string;
 
                 let updatedAddress: Address = new Address(
                     addressId,
-                    request.body['colorCode'],
+                    request.body['streetName'],
                     request.body['houseNumber'],
                     request.body['cityName'],
                     request.body['postcode'],
@@ -34,7 +34,7 @@ export default async (app: Application) => {
                                 });;
                         }
                         else {
-                            response.status(StatusCodes.BAD_REQUEST).send(errors);
+                            response.status(StatusCodes.BAD_REQUEST).json(errors);
                             return;
                         }
                     })
@@ -43,7 +43,7 @@ export default async (app: Application) => {
                     });
             }
             else {
-                response.status(StatusCodes.BAD_REQUEST).send('The address id of the body and request param should be the same.');
+                response.status(StatusCodes.BAD_REQUEST).json({ statusCode: StatusCodes.BAD_REQUEST, errorMessage: 'The address id of the body and request param should be the same.' });
             }
         }
         catch (error: any) {

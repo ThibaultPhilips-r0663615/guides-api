@@ -1,6 +1,7 @@
 import { Length, IsNotEmpty } from 'class-validator';
-import { Entity, Column, PrimaryColumn } from "typeorm";
+import { Entity, Column, PrimaryColumn, ManyToMany } from 'typeorm';
 import { ILabel } from './interfaces/label.interface';
+import { ALaCarteWalk } from './aLaCarteWalk.mode';
 
 @Entity('labels')
 export class Label implements ILabel {
@@ -34,9 +35,15 @@ export class Label implements ILabel {
     @Column({ type: 'varchar', length: 7 })
     textColorCode: string;
 
-    constructor(_id: string, colorCode: string, textColorCode: string) {
+    texts: any[];
+
+    @ManyToMany(type => ALaCarteWalk, walk => walk.languages)
+    aLaCarteWalks: ALaCarteWalk[];
+
+    constructor(_id: string, colorCode: string, textColorCode: string, texts: any[]) {
         this._id = _id;
         this.colorCode = colorCode;
         this.textColorCode = textColorCode;
+        this.texts = texts;
     }
 }

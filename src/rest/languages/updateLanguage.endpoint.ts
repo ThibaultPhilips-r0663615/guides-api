@@ -9,7 +9,7 @@ import { RepositoryContext } from '../../repositories/repository.context';
 export default async (app: Application) => {
     app.put('/update-language/:languageId', isAdmin, async (request: Request, response: Response, next: NextFunction) => {
         try {
-            if (request.params.languageId == request.body['languageId']) {
+            if (request.params.languageId == request.body['_id']) {
                 const languageId = request.params.languageId as string;
 
                 let updatedLanguage: Language = new Language(
@@ -31,7 +31,7 @@ export default async (app: Application) => {
                                 });;
                         }
                         else {
-                            response.status(StatusCodes.BAD_REQUEST).send(errors);
+                            response.status(StatusCodes.BAD_REQUEST).json(errors);
                             return;
                         }
                     })
@@ -40,7 +40,7 @@ export default async (app: Application) => {
                     });
             }
             else {
-                return response.status(StatusCodes.BAD_REQUEST).send('The langauge id of the body and request param should be the same.');
+                return response.status(StatusCodes.BAD_REQUEST).json({ statusCode: StatusCodes.BAD_REQUEST, errorMessage: 'The langauge id of the body and request param should be the same.'});
             }
         }
         catch (error: any) {

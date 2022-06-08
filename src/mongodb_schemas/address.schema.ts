@@ -33,13 +33,7 @@ export const AddressesSchema = new Schema({
         required: true
     },
     description: {
-        type: String,
-        required: function (this: IAddress) {
-            if (this.streetName !== undefined && this.houseNumber !== undefined)
-                return false;
-
-            return true;
-        }
+        type: [String]
     }
 }, {
     collection: 'addresses'
